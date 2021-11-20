@@ -82,17 +82,17 @@ if (! (Get-AzStorageContainer @StorageContainerParams -EA 0))
     }
 }
 
-if (! (Get-AzStorageBlob @StorageContainerParams -Blob $ComponentName/$MetaDataFileName -EA 0))
-{
-    try
-    {
-        # Copy up the metadata file
-        $Item = Get-Item -Path $PSScriptRoot\..\templates\$MetaDataFileName
-        Set-AzStorageBlobContent @StorageContainerParams -File $item.FullName -Blob $ComponentName/$MetaDataFileName -Verbose -Force
-    }
-    catch
-    {
-        Write-Warning $_
-        break
-    }
-}
+# if (! (Get-AzStorageBlob @StorageContainerParams -Blob $ComponentName/$MetaDataFileName -EA 0))
+# {
+#     try
+#     {
+#         # Copy up the metadata file
+#         $Item = Get-Item -Path $PSScriptRoot\..\templates\$MetaDataFileName
+#         Set-AzStorageBlobContent @StorageContainerParams -File $item.FullName -Blob $ComponentName/$MetaDataFileName -Verbose -Force
+#     }
+#     catch
+#     {
+#         Write-Warning $_
+#         break
+#     }
+# }
