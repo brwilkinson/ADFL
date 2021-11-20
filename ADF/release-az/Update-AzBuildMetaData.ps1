@@ -24,9 +24,11 @@ Param (
     [String]$BuildName = '4.2',
     [String]$ComponentName = 'EchoBot',
     [String]$BasePath = 'D:\Builds',
-    [String]$Environment = 'P0',
     [String]$MetaDataFileName = 'componentBuild.json',
-    [String]$App = 'BOT',
+    [Parameter(Mandatory)]
+    [String]$Environment,
+    [Parameter(Mandatory)]
+    [String]$App,
     [Parameter(Mandatory)]
     [String]$Location,
     [Parameter(Mandatory)]
