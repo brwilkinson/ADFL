@@ -16,7 +16,7 @@ $Prefix = $LocationLookup.$Location.Prefix
 # Azure Blob Container Info
 [String]$KVName = "${Prefix}-${OrgName}-${App}-${Environment}-kvGlobal".tolower()
 
-$Temp = Get-Content -Path $PSScriptRoot\..\azuredeploy${OrgName}.parameters.json | ConvertFrom-Json
+$Temp = Get-Content -Path $PSScriptRoot\..\tenants\${OrgName}\${Prefix}-${App}-${Environment}.parameters.json | ConvertFrom-Json
 $CertificateThumbprint = $Temp.parameters.DeploymentInfo.value.CertificateThumbprint
 
 $BaseSecrets = @(
@@ -61,9 +61,10 @@ $BaseSecrets | ForEach-Object {
 }
 
 # App Secrets required to be published to the keyvault
-$RequiredSecrets = @('BotName', 'AadAppId', 'AadAppSecret')
+$RequiredSecrets = @() # @('AppName', 'AadAppId', 'AadAppSecret')
 Write-Warning -Message "There are [$($RequiredSecrets.count)] Secrets required, you can enter them now or cancel."
-Write-Warning -Message "The secrets used by the BOT App are: [$($RequiredSecrets)]`n`n"
+Write-Warning -Message "You can add a prompt for secrets here: [ADF\release-az\Create-AppSecrets.ps1:64]"
+Write-Warning -Message "The secrets used by the App are: [$($RequiredSecrets)]`n`n"
 
 $RequiredSecrets | ForEach-Object {
 

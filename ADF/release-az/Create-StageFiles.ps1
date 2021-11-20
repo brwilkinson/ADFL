@@ -16,6 +16,11 @@ Write-Output $PSScriptRoot
 $LocationLookup = Get-Content -Path $PSScriptRoot\..\bicep\global\region.json | ConvertFrom-Json
 $Prefix = $LocationLookup.$Location.Prefix
 
+if (!(Test-Path -Path "$PSScriptRoot\..\tenants\${OrgName}"))
+{
+    mkdir -Path "$PSScriptRoot\..\tenants\${OrgName}" -Force
+}
+
 $filestocopy = @(
     @{
         SourcePath      = "$PSScriptRoot\..\templates\azuredeploy.parameters.json"
@@ -46,7 +51,7 @@ $filestocopy | ForEach-Object {
 
     if (! (Test-Path -Path $Destination))
     {
-        Copy-Item -Path $_.SourcePath -Destination $Destination
+        Copy-Item -Path $_.SourcePath -Destination $Destination -Force -Recurse
     }
 
     foreach ($token in $_.TokenstoReplace)

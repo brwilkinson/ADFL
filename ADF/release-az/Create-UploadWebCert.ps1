@@ -59,18 +59,18 @@ if (! (Get-AzKeyVaultCertificate -VaultName $KVName -Name WildcardCert -EA Silen
 
         # Write the Cert and the thumbprint and admin secret back to the param function 
 
-        $Temp = Get-Content -Path $PSScriptRoot\..\azuredeploy${OrgName}.parameters.json | ConvertFrom-Json
+        $Temp = Get-Content -Path $PSScriptRoot\..\tenants\${OrgName}\${Prefix}-${App}-${Environment}.parameters.json | ConvertFrom-Json
         $Temp.parameters.vmAdminPassword.reference.keyVault.id = $KV.ResourceId
-        $Temp | ConvertTo-Json -Depth 10 | Set-Content -Path $PSScriptRoot\..\azuredeploy${OrgName}.parameters.json
+        $Temp | ConvertTo-Json -Depth 10 | Set-Content -Path $PSScriptRoot\..\tenants\${OrgName}\${Prefix}-${App}-${Environment}.parameters.json
         
-        $Temp = Get-Content -Path $PSScriptRoot\..\azuredeploy${OrgName}.parameters.json | ConvertFrom-Json
+        $Temp = Get-Content -Path $PSScriptRoot\..\tenants\${OrgName}\${Prefix}-${App}-${Environment}.parameters.json | ConvertFrom-Json
         $Temp.parameters.DeploymentInfo.value.CertificateThumbprint = $cert.Thumbprint
-        $Temp | ConvertTo-Json -Depth 10 | Set-Content -Path $PSScriptRoot\..\azuredeploy${OrgName}.parameters.json
+        $Temp | ConvertTo-Json -Depth 10 | Set-Content -Path $PSScriptRoot\..\tenants\${OrgName}\${Prefix}-${App}-${Environment}.parameters.json
 
         Import-AzKeyVaultCertificate -FilePath $CertFilePath -Name WildcardCert -VaultName $KVName -Password $PW.SecretValue -OutVariable kvcert
-        $Temp = Get-Content -Path $PSScriptRoot\..\azuredeploy${OrgName}.parameters.json | ConvertFrom-Json
+        $Temp = Get-Content -Path $PSScriptRoot\..\tenants\${OrgName}\${Prefix}-${App}-${Environment}.parameters.json | ConvertFrom-Json
         $Temp.parameters.DeploymentInfo.value.certificateUrl = $kvcert[0].SecretId
-        $Temp | ConvertTo-Json -Depth 10 | Set-Content -Path $PSScriptRoot\..\azuredeploy${OrgName}.parameters.json
+        $Temp | ConvertTo-Json -Depth 10 | Set-Content -Path $PSScriptRoot\..\tenants\${OrgName}\${Prefix}-${App}-${Environment}.parameters.json
     }
     catch
     {
