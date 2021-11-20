@@ -6,7 +6,7 @@
 - ADF Light was created to simplify the setup of the same Azure Infrastructure.
     - Get started building 1 environment easily + Pipelines.
 
-**Instructions**
+##### **Instructions**
 
 1) Fork the Repo
 1) Clone your Repo
