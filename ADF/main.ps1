@@ -2,6 +2,10 @@ param (
     [parameter(mandatory)]
     [string]$OrgName,
 
+    [string]$App = 'APP',
+
+    [string]$Environment = 'D1',
+
     [string]$Location = 'centralus',
 
     [switch]$FullUpload,
@@ -12,7 +16,7 @@ param (
 $base = $PSScriptRoot
 $LocationLookup = Get-Content -Path $base/bicep/global/region.json | ConvertFrom-Json
 $Prefix = $LocationLookup.$Location.Prefix
-Write-Warning -Message "Prefix [$Prefix] Org [$OrgName] App [BOT] Environment [P0]"
+Write-Warning -Message "Prefix [$Prefix] Org [$OrgName] App [$App] Environment [$Environment]"
 [String]$SAName = "${Prefix}${OrgName}botp0saglobal".tolower()
 
 $Context = Get-AzContext | Select-Object Name, Account, Environment, Subscription, Tenant

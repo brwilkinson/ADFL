@@ -15,9 +15,14 @@
 
 param (
     [int]$SecretExpiryYears = 1,
-    [string]$OrgName,
-    [string]$App = 'BOT',
-    [string]$Environment = 'P0',
+    [Parameter(Mandatory)]
+    [String]$Environment,
+    [Parameter(Mandatory)]
+    [String]$App,
+    [Parameter(Mandatory)]
+    [String]$Location,
+    [Parameter(Mandatory)]
+    [String]$OrgName,
     [switch]$AddStorageAccess,
     [switch]$CurrentUserStorageAccess,
     [string]$RoleName = 'Owner',
@@ -57,8 +62,8 @@ Write-Warning "Your context is:`n $($Context | Format-List -Property Name,Accoun
 if ($Context)
 {
     Write-Verbose -Message "Setting SP RBAC on      : [$RoleName] on [$($context.Subscription.Name)] [$($context.Subscription.Id)]" -Verbose
-    $SecretName = 'AZURE_CREDENTIALS_{0}_BOT' -f $OrgName
-    $ServicePrincipalName = "GH_${GHProject}_{0}_BOT" -f $OrgName
+    $SecretName = 'AZURE_CREDENTIALS_{0}_{1}' -f $OrgName,$App
+    $ServicePrincipalName = "GH_${GHProject}_{0}_{1}" -f $OrgName,$App
 
     Write-Verbose -Message "Creating GH Secret Name : [$($SecretName)] in [$($GHProject)] git Secrets" -Verbose
     Write-Verbose -Message "Creating Azure AD SP    : [$($ServicePrincipalName)]" -Verbose

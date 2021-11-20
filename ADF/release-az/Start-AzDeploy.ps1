@@ -27,16 +27,19 @@ Function global:AzDeploy
         # Used DSC Resources if compiling DSC to zip
         [string] $DSCResourceFolder = 'DSCResources',
         
+        [Parameter(Mandatory)]
         [alias('DP', 'Deployment')]
-        [string] $Environment = 'P0',
+        [string] $Environment,
 
-        [validateset('BOT')]
+        [Parameter(Mandatory)]
         [alias('AppName')]
-        [string] $App = 'BOT',
+        [string] $App,
 
+        [Parameter(Mandatory)]
         [string] $OrgName,
 
-        [String] $Prefix = 'ACU1',
+        [Parameter(Mandatory)]
+        [String] $Prefix,
 
         [alias('TF')]
         [string] $TemplateFile = 'main.bicep',
@@ -47,10 +50,12 @@ Function global:AzDeploy
         [alias('ComputerName')]
         [string] $CN = '.',
 
+        [Parameter(Mandatory)]
         [string] $StorageAccountName,
 
         # Optional, you can use keyvault, update reference in
         # ADF\azuredeploy.parameters.json for the 'vmAdminPassword' parameter
+        [Parameter(Mandatory)]
         [securestring] $vmAdminPassword,
 
         # When deploying VM's, this is a subset of AppServers e.g. AppServers, SQLServers, ADPrimary

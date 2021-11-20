@@ -1,12 +1,13 @@
 param (
-    [String]$Environment = 'P0',
-    [String]$App = 'BOT',
+    [Parameter(Mandatory)]
+    [String]$Environment,
+    [Parameter(Mandatory)]
+    [String]$App,
     [Parameter(Mandatory)]
     [String]$Location,
     [Parameter(Mandatory)]
     [String]$OrgName,
     [string]$RoleName = 'Key Vault Administrator',
-    
     # Default to false for lab
     [switch]$EnablePurgeProtection
 )

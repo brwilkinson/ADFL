@@ -1,9 +1,12 @@
 param (
-    [String]$Environment = 'P0',
-    [String]$App = 'BOT',
+    [Parameter(Mandatory)]
+    [String]$Environment,
+    [Parameter(Mandatory)]
+    [String]$App,
+    [Parameter(Mandatory)]
+    [String]$Location,
     [Parameter(Mandatory)]
     [String]$OrgName,
-    [String]$Location,
     [String]$ComponentName = 'EchoBot',
     [String]$MetaDataFileName = 'componentBuild.json'
 )
