@@ -32,7 +32,7 @@ $filestocopy = @(
     #     SourcePath      = "$PSScriptRoot\..\templates\ado-pipelines.yml"
     #     DestinationPath = "$PSScriptRoot\..\tenants\${OrgName}\ado-pipelines-${Prefix}-${App}-${Environment}.yml"
     #     TokenstoReplace = @(
-    #         'OrgName', 'App', 'Prefix', 'Environment'
+    #        'OrgName', 'App', 'Prefix', 'Environment', 'Location'
     #     )
     # }
 
@@ -40,7 +40,7 @@ $filestocopy = @(
         SourcePath      = "$PSScriptRoot\..\templates\GH-actions.yml"
         DestinationPath = "$PSScriptRoot\..\..\.github\workflows\GH-actions-${Prefix}-${App}-${Environment}.yml"
         TokenstoReplace = @(
-            'OrgName', 'App', 'Prefix', 'Environment'
+            'OrgName', 'App', 'Prefix', 'Environment', 'Location'
         )
     }
 )

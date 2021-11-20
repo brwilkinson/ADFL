@@ -39,7 +39,7 @@ jobs:
       - name: Login via Az module
         uses: azure/login@v1
         with:
-          creds: ${{secrets.AZURE_CREDENTIALS_BRW_APP}
+          creds: ${{ secrets.AZURE_CREDENTIALS_BRW_APP }}
           enable-AzPSSession: true
 
       - name: Deploy_All_Subscription
@@ -54,6 +54,7 @@ jobs:
             }
             ./ADF/main.ps1 @Params
             if ($e){throw $e}
+
 
 
 
