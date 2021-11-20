@@ -1,7 +1,8 @@
 ## Azure Deployment Framework Light
-### == An Azure Bicep Project ==
+### ** An Azure Bicep Project **
 - ADF Light was created to simplify the setup of Azure Infrastructure.
     - Get started building 1 environment easily + Pipelines.
+
 
 ##### **Instructions**
 
