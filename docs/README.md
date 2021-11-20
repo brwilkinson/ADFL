@@ -2,20 +2,22 @@
 ### == An Azure Bicep Project ==
 
 #### Azure Deployment Framework, was build for Enterprise Customers.
-- It was complex to setup, because it was designed with scale and multi environments in mind.
+- It was complex to setup, because it was designed with scale across region/org/apps.
 - ADF Light was created to simplify the setup of the same Azure Infrastructure.
-    - Get started building 1 environment easily.
-
+    - Get started building 1 environment easily + Pipelines.
 
 **Instructions**
 
 1) Fork the Repo
-2) Clone your Repo
+1) Clone your Repo
 `gh repo clone <yourRepo>/ADFL`
-3) Code .\ADFL
-4) Ctrl+J to Open PowerShell in Terminal
-5) Cd into Repo Base Directory if you are not already there.
-6) Execute the `deploy.ps1`
+1) Code .\ADFL
+1) Ctrl+J to Open PowerShell in Terminal
+1) Ensure you are logged into Azure, in the correct Subscription
+1) Ensure you have:
+    1) gh.exe for creating gh secrets
+1) Cd into Repo Base Directory if you are not already there.
+1) Execute the `deploy.ps1`
 
 ```powershell
 # Option 1. Execute all pre-req steps, plus run the deployment
