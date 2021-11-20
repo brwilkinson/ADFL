@@ -6,9 +6,9 @@ param (
     [Parameter(Mandatory)]
     [String]$Location,
     [Parameter(Mandatory)]
-    [String]$OrgName,
-    [String]$ComponentName = 'EchoBot',
-    [String]$MetaDataFileName = 'componentBuild.json'
+    [String]$OrgName
+    # [String]$ComponentName = 'EchoBot',
+    # [String]$MetaDataFileName = 'componentBuild.json'
 )
 
 Write-Output $PSScriptRoot
@@ -25,15 +25,14 @@ $filestocopy = @(
     @{
         SourcePath      = "$PSScriptRoot\..\templates\azuredeploy.parameters.json"
         DestinationPath = "$PSScriptRoot\..\tenants\${OrgName}\${Prefix}-${App}-${Environment}.parameters.json"
-        TokenstoReplace = $null
-        ReplaceWith     = $null
+        TokenstoReplace = @()
     }
 
     # @{
     #     SourcePath      = "$PSScriptRoot\..\templates\ado-pipelines.yml"
     #     DestinationPath = "$PSScriptRoot\..\tenants\${OrgName}\ado-pipelines-${Prefix}-${App}-${Environment}.yml"
     #     TokenstoReplace = @(
-    #         '{OrgName}', '{App}', '{Prefix}', '{Environment}'
+    #         'OrgName', 'App', 'Prefix', 'Environment'
     #     )
     # }
 
@@ -41,9 +40,9 @@ $filestocopy = @(
         SourcePath      = "$PSScriptRoot\..\templates\GH-actions.yml"
         DestinationPath = "$PSScriptRoot\..\..\.github\workflows\GH-actions-${Prefix}-${App}-${Environment}.yml"
         TokenstoReplace = @(
-            '{OrgName}', '{App}', '{Prefix}', '{Environment}'
+            'OrgName', 'App', 'Prefix', 'Environment'
         )
-    }    
+    }
 )
 
 $filestocopy | ForEach-Object {
@@ -56,9 +55,9 @@ $filestocopy | ForEach-Object {
 
     foreach ($token in $_.TokenstoReplace)
     {
-        if (Select-String -Pattern $token -Path $Destination)
+        if (Select-String -Pattern "{$token}" -Path $Destination)
         {
-            ((Get-Content -Path $Destination -Raw) -replace $token, (Get-Item -Path variable:\$token).value ) | Set-Content -Path $Destination
+            ((Get-Content -Path $Destination -Raw) -replace "{$token}", (Get-Item -Path variable:\$token).value ) | Set-Content -Path $Destination
         }
     }
 }
