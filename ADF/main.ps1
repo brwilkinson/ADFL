@@ -27,9 +27,10 @@ if ($Context)
     . $base\release-az\Start-AzDeploy.ps1
     
     $Params = @{
-        DeploymentName     = 'ADFL-P0'
-        OrgName            = $OrgName
         Prefix             = $Prefix
+        App                = $App
+        OrgName            = $OrgName
+        Environment        = $Environment
         StorageAccountName = $SAName
         PackageDSC         = $PackageDSC
     }

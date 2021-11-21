@@ -18,8 +18,10 @@ on:
   workflow_dispatch:
 
 env:
-  OrgName: BRW
-  Location: centralus
+  Prefix:      ACU1
+  OrgName:     BRW
+  App:         APP
+  Environment: D1
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -48,13 +50,14 @@ jobs:
           azPSVersion: latest
           inlineScript: |
             $Params = @{
+              Prefix          = $env:Prefix
               OrgName         = $env:OrgName
-              Location        = $env:location
+              App             = $env:App
+              Environment     = $env:Environment
               FullUpload      = $true
             }
             ./ADF/main.ps1 @Params
             if ($e){throw $e}
-
 
 
 

@@ -55,7 +55,6 @@ Function global:AzDeploy
 
         # Optional, you can use keyvault, update reference in
         # ADF\azuredeploy.parameters.json for the 'vmAdminPassword' parameter
-        [Parameter(Mandatory)]
         [securestring] $vmAdminPassword,
 
         # When deploying VM's, this is a subset of AppServers e.g. AppServers, SQLServers, ADPrimary
@@ -75,7 +74,7 @@ Function global:AzDeploy
     )
 
     $TemplateFile = "$Artifacts/$TemplateFile"
-    $TemplateParameterFile = "$Artifacts/$TemplateParameterFile"
+    $TemplateParameterFile = "$Artifacts/tenants/$OrgName/$TemplateParameterFile"
     $DSCSourceFolder = "$Artifacts/$DSCSourceFolder"
     $DSCResourceFolder = "$Artifacts/$DSCResourceFolder"
 

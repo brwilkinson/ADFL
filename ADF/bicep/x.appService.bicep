@@ -153,4 +153,4 @@ resource WSWebConfig 'Microsoft.Web/sites/config@2021-01-01' = if(contains(ws, '
   }
 }
 
-output WebSite resource = WS
+output WebSite object = WS
