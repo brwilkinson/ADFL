@@ -45,7 +45,7 @@ Function global:AzDeploy
         [string] $TemplateFile = 'main.bicep',
 
         [alias('TP')]
-        [string] $TemplateParameterFile = "azuredeploy${OrgName}.parameters.json",
+        [string] $TemplateParameterFile = "${Prefix}-${App}-${Environment}.parameters.json",
 
         [alias('ComputerName')]
         [string] $CN = '.',
@@ -57,7 +57,7 @@ Function global:AzDeploy
         [securestring] $vmAdminPassword,
 
         # When deploying VM's, this is a subset of AppServers e.g. AppServers, SQLServers, ADPrimary
-        [string] $DeploymentName = ($Prefix + '-' + $App + '-' + $Environment + '-' + (Get-ChildItem .\ADF\$TemplateFile).BaseName),
+        [string] $DeploymentName = ($Prefix + '-' + $App + '-' + $Environment + '-' + (Get-ChildItem $Artifacts/$TemplateFile).BaseName),
 
         [switch] $FullUpload,
 
