@@ -18,7 +18,7 @@ on:
   workflow_dispatch:
 
 env:
-  Prefix:      {Prefix}
+  Location:    {Location}
   OrgName:     {OrgName}
   App:         {App}
   Environment: {Environment}
@@ -50,7 +50,7 @@ jobs:
           azPSVersion: latest
           inlineScript: |
             $Params = @{
-              Prefix          = $env:Prefix
+              Location        = $env:Location
               OrgName         = $env:OrgName
               App             = $env:App
               Environment     = $env:Environment

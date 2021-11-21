@@ -53,8 +53,7 @@ Function global:AzDeploy
         [Parameter(Mandatory)]
         [string] $StorageAccountName,
 
-        # Optional, you can use keyvault, update reference in
-        # ADF\azuredeploy.parameters.json for the 'vmAdminPassword' parameter
+        # Optional, use keyvault by default
         [securestring] $vmAdminPassword,
 
         # When deploying VM's, this is a subset of AppServers e.g. AppServers, SQLServers, ADPrimary

@@ -14,6 +14,15 @@ $location = $location -replace '\W', ''
 
 $LocationLookup = Get-Content -Path $base/ADF/bicep/global/region.json | ConvertFrom-Json
 $Prefix = $LocationLookup.$Location.Prefix
+if (!($Prefix))
+{
+    $r = Get-Content -Path $Path | ConvertFrom-Json | Get-Member |
+        Where-Object MemberType -EQ NoteProperty | Foreach Name
+    Write-Warning "Region [$Location] is not an Azure region"
+    Write-Warning "Select from regions: [$r]"
+    return
+}
+
 Write-Warning -Message "Prefix [$Prefix] Org [$OrgName] App [$App] Environment [$Environment]"
 
 if ($RunSetup -OR ! (Test-Path -Path $base\ADF\tenants\${OrgName}\${Prefix}-${App}-${Environment}.parameters.json))
@@ -54,10 +63,10 @@ if ($RunDeployment)
 {
     # deploy manually
     $Params = @{
+        Location    = $location
         OrgName     = $OrgName
         App         = $App
         Environment = $Environment
-        Location    = $location
         FullUpload  = $true
     }
     & $base\ADF\main.ps1 @Params

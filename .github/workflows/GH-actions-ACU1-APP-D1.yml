@@ -18,7 +18,7 @@ on:
   workflow_dispatch:
 
 env:
-  Prefix:      ACU1
+  Location:    centralus
   OrgName:     BRW
   App:         APP
   Environment: D1
@@ -50,7 +50,7 @@ jobs:
           azPSVersion: latest
           inlineScript: |
             $Params = @{
-              Prefix          = $env:Prefix
+              Location        = $env:Location
               OrgName         = $env:OrgName
               App             = $env:App
               Environment     = $env:Environment
@@ -58,6 +58,7 @@ jobs:
             }
             ./ADF/main.ps1 @Params
             if ($e){throw $e}
+
 
 
 
