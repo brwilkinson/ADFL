@@ -57,7 +57,7 @@ Function global:AzDeploy
         [securestring] $vmAdminPassword,
 
         # When deploying VM's, this is a subset of AppServers e.g. AppServers, SQLServers, ADPrimary
-        [string] $DeploymentName = ($Prefix + '-' + $App + '-' + $Environment + '-' + (Get-ChildItem $TemplateFile).BaseName),
+        [string] $DeploymentName = ($Prefix + '-' + $App + '-' + $Environment + '-' + (Get-ChildItem .\ADF\$TemplateFile).BaseName),
 
         [switch] $FullUpload,
 
