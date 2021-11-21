@@ -18,6 +18,7 @@
     },
     "Stage": {
       "value": {
+        "SUB": 1,
         "RG": 1,
         "RBAC": 1,
         "UAI": 1,
@@ -35,7 +36,7 @@
         "RSV": 1,
         "NSG": 1,
         "NetworkWatcher": 0,
-        "FlowLogs": 1,
+        "FlowLogs": 0,
         "VNet": 1,
         "VNetPeering": 0,
         "DNSPublicZone": 0,
@@ -60,8 +61,8 @@
         "WAFPOLICY": 0,
         "FRONTDOOR": 0,
         "WAF": 0,
-        "SetExternalDNS": 1,
-        "SetInternalDNS": 1,
+        "SetExternalDNS": 0,
+        "SetInternalDNS": 0,
         "APPCONFIG": 0,
         "REDIS": 0,
         "APIM": 0,
